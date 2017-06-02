@@ -7,6 +7,7 @@ namespace ReadOne.Application
     [Story(AsA = "As a reader",
            IWant = "I want to know all comands to control",
            SoThat = "So that I can overview all available comands")]
+    [TestFixture]
     public class ComandList
     {
         [SetUp]
@@ -25,14 +26,16 @@ namespace ReadOne.Application
 
         private void HeSeesHi()
         {
-            throw new NotImplementedException();
+            Assert.AreEqual("Hi", _response);
         }
 
         private void BobSaysAnything()
         {
-            throw new NotImplementedException();
+            _message = "sjhgad";
         }
 
         private ReadOne _app;
+        private string _message = string.Empty;
+        private string _response = string.Empty;
     }
 }
