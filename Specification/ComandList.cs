@@ -2,13 +2,19 @@
 using System;
 using TestStack.BDDfy;
 
-namespace ReadOne.Specification
+namespace ReadOne.Application
 {
     [Story(AsA = "As a reader",
            IWant = "I want to know all comands to control",
            SoThat = "So that I can overview all available comands")]
     public class ComandList
     {
+        [SetUp]
+        public void SetUp()
+        {
+            _app = new ReadOne();
+        }
+
         [Test]
         public void BobIsGreeted()
         {
@@ -26,5 +32,7 @@ namespace ReadOne.Specification
         {
             throw new NotImplementedException();
         }
+
+        private ReadOne _app;
     }
 }
