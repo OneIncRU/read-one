@@ -5,9 +5,9 @@ using TestStack.BDDfy;
 namespace ReadOne.Specification
 {
     [Story(AsA = "As a reader",
-           IWant = "I want to list all books",
-           SoThat = "So that I can overview all library content")]
-    public class LibraryOverview
+           IWant = "I want to know all comands to control",
+           SoThat = "So that I can overview all available comands")]
+    public class ComandList
     {
         [Test]
         public void BobIsGreeted()
