@@ -19,20 +19,20 @@ namespace ReadOne.Application
             public ArrayList Events;
         }
 
-        private ConcurrentDictionary<Guid, Stream> store = new ConcurrentDictionary<Guid, Stream>();
+        private readonly ConcurrentDictionary<Guid, Stream> _store = new ConcurrentDictionary<Guid, Stream>();
 
         public IEnumerable LoadEventsFor<TAggregate>(Guid id)
         {
             // Get the current event stream; note that we never mutate the
             // Events array so it's safe to return the real thing.
             Stream s;
-            return store.TryGetValue(id, out s) ? s.Events : new ArrayList();
+            return _store.TryGetValue(id, out s) ? s.Events : new ArrayList();
         }
 
         public void SaveEventsFor<TAggregate>(Guid aggregateId, int eventsLoaded, ArrayList newEvents)
         {
             // Get or create stream.
-            var s = store.GetOrAdd(aggregateId, _ => new Stream());
+            var s = _store.GetOrAdd(aggregateId, _ => new Stream());
 
             // We'll use a lock-free algorithm for the update.
             while (true)
@@ -41,7 +41,7 @@ namespace ReadOne.Application
                 var eventList = s.Events;
 
                 // Ensure no events persisted since us.
-                var prevEvents = eventList == null ? 0 : eventList.Count;
+                var prevEvents = eventList?.Count ?? 0;
                 if (prevEvents != eventsLoaded)
                     throw new Exception("Concurrency conflict; cannot persist these events!");
 
