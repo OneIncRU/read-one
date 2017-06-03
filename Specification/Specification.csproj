@@ -68,6 +68,10 @@
       <Project>{b255226b-219f-4b00-ac43-394082955c07}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Queries\Queries.csproj">
+      <Project>{5002A24A-037A-425F-887C-2C039C45F350}</Project>
+      <Name>Queries</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

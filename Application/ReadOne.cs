@@ -12,6 +12,11 @@
             return _commands.GetCommandList();
         }
 
+        public Library.BookPreview[] Books(string[] tags)
+        {
+            return _library.Books(tags);
+        }
+
         public ReadOne()
         {
             _dispatcher = new MessageDispatcher(new InMemoryEventStore());

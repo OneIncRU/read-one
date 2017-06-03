@@ -33,31 +33,43 @@ namespace ReadOne.Application
                 .Then(x => x.HeSeesNoAvailableBooks())
                 .BDDfy();
         }
-        private void NeoSaysBooks()
-        {
-            throw new NotImplementedException();
-        }
 
         private void ListOfBooksIsNotEmpty()
         {
-            throw new NotImplementedException();
+            _addedBookId = Guid.NewGuid();
+            _app.Do(new Add
+            {
+                Id = _addedBookId,
+                Name = "name"
+            });
         }
 
         private void ListOfBooksIsEmpty()
         {
-            throw new NotImplementedException();
+        }
+
+        private void NeoSaysBooks()
+        {
+            _previews = _app.Books(new string[0]);
         }
 
         private void HeSeesListOfBooks()
         {
-            throw new NotImplementedException();
+            Assert.Multiple(() =>
+            {
+                Assert.That(_previews.Length, Is.EqualTo(1));
+                //Assert.That(_previews[0].Id, Is.EqualTo(_addedBookId));
+                Assert.That(_previews[0].Name, Is.EqualTo("name"));
+            });
         }
 
         private void HeSeesNoAvailableBooks()
         {
-            throw new NotImplementedException();
+            Assert.That(_previews.Length, Is.EqualTo(0));
         }
 
         private ReadOne _app;
+        private Library.BookPreview[] _previews;
+        private Guid _addedBookId;
     }
 }
