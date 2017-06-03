@@ -117,6 +117,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CommandWrapping\CommandWrapperBase.cs" />
+    <Compile Include="CommandWrapping\ICommandManager.cs" />
+    <Compile Include="CommandWrapping\CommandManager.cs" />
+    <Compile Include="CommandWrapping\ICommandWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
