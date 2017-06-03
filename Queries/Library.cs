@@ -21,7 +21,7 @@ namespace ReadOne
 
         public Book BookInfo(Guid id)
         {
-            return new Book();
+            return _books.SingleOrDefault(book => book.Id == id);
         }
 
         #region Builders
