@@ -32,18 +32,23 @@ namespace ReadOne.Application
         }
         private void BobSaysShowMeBooks()
         {
+            throw new NotImplementedException();
         }
         private void ListOfBooksIsNotEmpty()
         {
+            throw new NotImplementedException();
         }
         private void ListOfBooksIsEmpty()
         {
+            throw new NotImplementedException();
         }
         private void HeSeesListOfBooks()
         {
+            throw new NotImplementedException();
         }
         private void HeSeesNoAvailableBooks()
         {
+            throw new NotImplementedException();
         }
         private ReadOne _app;
     }
