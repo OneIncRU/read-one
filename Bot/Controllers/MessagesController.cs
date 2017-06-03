@@ -1,6 +1,8 @@
 ﻿using Bot.Tools;
 using Microsoft.Bot.Connector;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -11,6 +13,10 @@ namespace Bot
     [BotAuthentication]
     public class MessagesController : ApiController
     {
+        private const string ShowBookDetailsCommandName = "show_book_details";
+        private const string BooksCommandName = "books";
+        private const string AddCommandName = "add";
+        private const string PostBackName = "postBack";
         private readonly ReadOne.Application.ReadOne _app;
 
         public MessagesController(ReadOne.Application.ReadOne app)
@@ -29,9 +35,9 @@ namespace Bot
                 var connectorClient = new ConnectorClient(new Uri(activity.ServiceUrl));
                 var tokens = activity.Text.ToTokens();
                 var reply = activity.CreateReply();
-                switch (tokens[0])
+                switch (tokens[0].ToLower())
                 {
-                    case "add":
+                    case AddCommandName:
                         if (tokens.Length < 2)
                         {
                             reply.Text = "Using: add \"Books name\"";
@@ -43,36 +49,55 @@ namespace Bot
                         }
                         break;
 
-                    case "books":
-                        //todo
+                    case BooksCommandName:
+                        var someList = new List<Tuple<string, Guid>>
+                        {
+                            new Tuple<string, Guid> ("книга 1", Guid.NewGuid() ),
+                            new Tuple<string, Guid> ("книга 2", Guid.NewGuid() ),
+                            new Tuple<string, Guid> ("книга 3", Guid.NewGuid() ),
+                        };
+                        var card = new HeroCard
+                        {
+                            Title = "Books list",
+                        };
+                        var books = someList.Select(x => new CardAction
+                        {
+                            Type = PostBackName,
+                            Title = x.Item1,
+                            Value = ShowBookDetailsCommandName+" "+ x.Item2.ToString("N")
+                        }).ToList();
+                        card.Buttons = books;
+                        reply.Attachments.Add(card.ToAttachment());
+                        break;
+                    case ShowBookDetailsCommandName:
+                        var bookId = Guid.Parse(tokens[1]);
+                        var bookDetails = "НАЗЫАГие";
+                        var book = new HeroCard
+                        {
+                            Title = "Book details:",
+                            Subtitle = bookDetails,
+                            Text = "Book id: "+bookId.ToString("N")
+                        };
+                        var actions = new List<CardAction>
+                        {
+                            new CardAction
+                            {
+                                Title = "Read",
+                                Type = PostBackName,
+                                Value = "start "+bookId.ToString("N")
+                            },
+                            new CardAction
+                            {
+                                Title = "Finish",
+                                Type = PostBackName,
+                                Value = "finish "+bookId.ToString("N")
+                            },
+                        };
+
+                        book.Buttons = actions;
+                        reply.Attachments.Add(book.ToAttachment());
                         break;
                 }
-                var header = string.Empty;
-
-                /*              var heroCard = new HeroCard
-                              {
-                                  Title = header,
-                                  Buttons = new List<CardAction>
-                                  {
-                                      new CardAction {Type = "postBack", Title = "Select 1 fdshfsdjkhsdfjk", Value = "1"},
-                                      new CardAction {Type = "postBack", Title = "Select 1 fdshfsdjkhsdfjkfdshfsdjkhsdfjk", Value = "1"},
-                                      new CardAction {Type = "postBack", Title = "Select 1", Value = "1"},
-                                      new CardAction {Type = "postBack", Title = "Select 1", Value = "1"},
-                                      new CardAction {Type = "postBack", Title = "Select 1", Value = "1"},
-                                      new CardAction {Type = "postBack", Title = "Select 1", Value = "1"},
-                                      new CardAction {Type = "postBack", Title = "Select 1fdshfsdjkhsdfjkfdshfsdjkhsdfjkfdshfsdjkhsdfjk", Value = "1"},
-                                      new CardAction {Type = "postBack", Title = "Select 1", Value = "1"},
-                                      new CardAction {Type = "postBack", Title = "Select 1", Value = "1"},
-                                      new CardAction {Type = "postBack", Title = "Select 1fdshfsdjkhsdfjkfdshfsdjkhsdfjkfdshfsdjkhsdfjkfdshfsdjkhsdfjk", Value = "1"},
-                                      new CardAction {Type = "postBack", Title = "Select 1", Value = "1"},
-                                  },
-                                  Tap = new CardAction
-                                  {
-                                      Value = "44"
-                                  }
-                              };
-                              reply.Attachments.Add(heroCard.ToAttachment());
-              */
                 await connectorClient.Conversations.ReplyToActivityAsync(reply);
             }
             else

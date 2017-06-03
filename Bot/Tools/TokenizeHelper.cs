@@ -10,7 +10,7 @@ namespace Bot.Tools
 
         public static string[] ToTokens(this string input)
         {
-            return SplitInput(input).Select(RemoveBorders).ToArray();
+            return SplitInput(input).Select(x=>RemoveBorders(x).Trim()).ToArray();
         }
 
         private static IEnumerable<string> SplitInput(string input)
