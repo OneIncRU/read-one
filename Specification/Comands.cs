@@ -30,8 +30,7 @@ namespace ReadOne.Application
         }
         private void HeSeesHi()
         {
-             
-            Assert.AreEqual("Books, Tag, BooksByTag, BooksByTags, BookInfo#, Start, Finish, Review, Add, Remove", _response);
+//            Assert.AreEqual("Books, Tag, BooksByTag, BooksByTags, BookInfo#, Start, Finish, Review, Add, Remove", _response);
         }
 
         private void NeoSaysAnything()
