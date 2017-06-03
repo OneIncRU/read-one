@@ -38,6 +38,7 @@ namespace ReadOne.Application
                 .Then(x => x.HeSeesNoBookInfo())
                 .BDDfy();
         }
+        
         private void CorrectChoiceOfBook()
         {
             throw new NotImplementedException();
