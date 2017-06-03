@@ -11,9 +11,9 @@ namespace ReadOne.Application
 {
     [Story(AsA = "As a reader",
            IWant = "I want to see available tags for sorting books",
-           SoThat = "So that I can overview all available tags")]
+           SoThat = "So that I can choose some tags to filter the library")]
     [TestFixture]
-    public class ShowTagList
+    public class Tags
     {
         private ReadOne _app;
 
@@ -25,20 +25,20 @@ namespace ReadOne.Application
         [Test]
         public void GetNotEmptyTagList()
         {
-            this.When(x => x.BobSaysShowTagList())
-                    .And(x => x.TagListIsNotEmpty())
+            this.Given(x => x.TagListIsNotEmpty())
+                .When(x => x.NeoSaysTags())
                 .Then(x => x.HeSeesTagList())
                 .BDDfy();
         }
         [Test]
         public void GetEmptyTagList()
         {
-            this.When(x => x.BobSaysShowTagList())
-                    .And(x => x.TagListIsEmpty())
+            this.Given(x => x.TagListIsEmpty())
+                .When(x => x.NeoSaysTags())
                 .Then(x => x.HeSeesEmptyTagList())
                 .BDDfy();
         }
-        private void BobSaysShowTagList()
+        private void NeoSaysTags()
         {
             throw new NotImplementedException();
         }

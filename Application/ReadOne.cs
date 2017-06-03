@@ -9,7 +9,7 @@
 
         public string[] GetCommandList()
         {
-            return new[] { "q","w" };
+            return _commands.GetCommandList();
         }
 
         public ReadOne()
@@ -20,9 +20,12 @@
 
             _library = new Library();
             _dispatcher.ScanInstance(_library);
+            _commands = new Language();
+            _dispatcher.ScanInstance(_commands);
         }
 
         private readonly MessageDispatcher _dispatcher;
         private readonly Library _library;
+        private readonly Language _commands;
     }
 }

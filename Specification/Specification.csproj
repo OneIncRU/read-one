@@ -49,10 +49,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ShowTagList.cs" />
-    <Compile Include="ComandList.cs" />
+    <Compile Include="BooksByTag.cs" />
+    <Compile Include="BookInfo.cs" />
+    <Compile Include="BaseBook.cs" />
+    <Compile Include="TrackingBook.cs" />
+    <Compile Include="Tags.cs" />
+    <Compile Include="Comands.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShowMeBooks.cs" />
+    <Compile Include="Books.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj">

@@ -8,7 +8,7 @@ namespace ReadOne.Application
            IWant = "I want to know all comands to control",
            SoThat = "So that I can overview all available comands")]
     [TestFixture]
-    public class ComandList
+    public class Comands
     {
         [SetUp]
         public void SetUp()
@@ -17,24 +17,24 @@ namespace ReadOne.Application
         }
 
         [Test]
-        public void BobIsGreeted()
+        public void NeoIsGreeted()
         {
-            this.When(x => x.BobSaysAnything())
-                    .And(x => x.BobSaysNotOneFromListComands())
+            this.When(x => x.NeoSaysAnything())
+                    .And(x => x.NeoSaysNotOneFromListComands())
                 .Then(x => x.HeSeesHi())
                 .BDDfy();
         }
-        private void BobSaysNotOneFromListComands()
+        private void NeoSaysNotOneFromListComands()
         {
 
         }
         private void HeSeesHi()
         {
              
-            //Assert.AreEqual("ShowMeBooks, ShowTagList, ShowBooksByTag, ShowBooksByTags, GiveBookInfo#, StartRead, FinishRead, InputBookInfo, DeleteBook", _response);
+            Assert.AreEqual("Books, Tag, BooksByTag, BooksByTags, BookInfo#, Start, Finish, Review, Add, Remove", _response);
         }
 
-        private void BobSaysAnything()
+        private void NeoSaysAnything()
         {
             _message = "sjhgad";
         }

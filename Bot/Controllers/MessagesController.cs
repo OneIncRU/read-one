@@ -1,8 +1,8 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
 namespace Bot
@@ -10,6 +10,13 @@ namespace Bot
     [BotAuthentication]
     public class MessagesController : ApiController
     {
+        private readonly ReadOne.Application.ReadOne _app;
+
+        public MessagesController(ReadOne.Application.ReadOne app)
+        {
+            _app = app;
+        }
+
         /// <summary>
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
@@ -18,7 +25,11 @@ namespace Bot
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
+                var connectorClient = new ConnectorClient(new Uri(activity.ServiceUrl));
+
+                var length = activity.Text.Length;
+                var reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
+                await connectorClient.Conversations.ReplyToActivityAsync(reply);
             }
             else
             {
