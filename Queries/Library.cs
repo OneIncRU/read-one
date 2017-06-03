@@ -6,9 +6,19 @@ namespace ReadOne
     public class Library :
         ISubscribeTo<BookAdded>
     {
-        public Book[] GetBooksList()
+        public Book[] GetBooks(string[] tags)
         {
             return Array.Empty<Book>();
+        }
+
+        public string[] GetTags()
+        {
+            return Array.Empty<string>();
+        }
+
+        public Book GetBookInfo()
+        {
+            return new Book();
         }
 
         public void Handle(BookAdded e)
