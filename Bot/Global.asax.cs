@@ -13,7 +13,7 @@ namespace Bot
             var config = GlobalConfiguration.Configuration;
 
             var builder = new ContainerBuilder();
-            builder.RegisterType<ReadOne.Application.ReadOne>().AsSelf();
+            builder.RegisterType<ReadOne.Application.ReadOne>().AsSelf().SingleInstance();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             var container = builder.Build();
 
