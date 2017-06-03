@@ -135,7 +135,7 @@ namespace ReadOne.Application
             {
                 this.Given(x => x.BookExists())
                     .When(x => x.NeoSaysReview())
-                    .Then(x => x.NeoReviewBook())
+                    .Then(x => x.NeoReviewedBook())
                     .BDDfy();
             }
             [Test]
@@ -151,7 +151,7 @@ namespace ReadOne.Application
             {
                 throw new NotImplementedException();
             }
-            private void NeoReviewBook()
+            private void NeoReviewedBook()
             {
                 throw new NotImplementedException();
             }
