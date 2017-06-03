@@ -35,17 +35,17 @@ namespace ReadOne
     public class Start : ICommand
     {
         public Guid Id { get; set; }
-        public Guid Reader { get; set; }
+        public string Reader { get; set; }
     }
     public class Finish : ICommand
     {
         public Guid Id { get; set; }
-        public Guid Reader { get; set; }
+        public string Reader { get; set; }
     }
     public class Review : ICommand
     {
         public Guid Id { get; set; }
-        public Guid Reader { get; set; }
+        public string Reader { get; set; }
         public int Rating { get; set; }
         public string Comment { get; set; }
         public string[] Tags { get; set; }
@@ -65,19 +65,19 @@ namespace ReadOne
     {
         public DateTime Moment { get; set; }
         public Guid Id { get; set; }
-        public Guid Reader { get; set; }
+        public string Reader { get; set; }
     }
     public class BookRead : IDomainEvent
     {
         public DateTime Moment { get; set; }
         public Guid Id { get; set; }
-        public Guid Reader { get; set; }
+        public string Reader { get; set; }
     }
     public class BookReviewed : IDomainEvent
     {
         public DateTime Moment { get; set; }
         public Guid Id { get; set; }
-        public Guid Reader { get; set; }
+        public string Reader { get; set; }
         public int Rating { get; set; }
         public string Comment { get; set; }
         public string[] Tags { get; set; }
