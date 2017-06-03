@@ -10,6 +10,13 @@ namespace Bot
     [BotAuthentication]
     public class MessagesController : ApiController
     {
+        private readonly ReadOne.Application.ReadOne _app;
+
+        public MessagesController(ReadOne.Application.ReadOne app)
+        {
+            _app = app;
+        }
+
         /// <summary>
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
@@ -18,7 +25,7 @@ namespace Bot
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
+                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog(_app));
             }
             else
             {

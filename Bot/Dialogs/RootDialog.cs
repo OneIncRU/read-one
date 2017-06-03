@@ -8,6 +8,13 @@ namespace Bot.Dialogs
     [Serializable]
     public class RootDialog : IDialog<object>
     {
+        private readonly ReadOne.Application.ReadOne _app;
+
+        public RootDialog(ReadOne.Application.ReadOne app)
+        {
+            _app = app;
+        }
+
         public Task StartAsync(IDialogContext context)
         {
             context.Wait(MessageReceivedAsync);
