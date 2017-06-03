@@ -24,7 +24,7 @@ namespace ReadOne.Application
                 .Then(x => x.HeSeesHi())
                 .BDDfy();
         }
-        private void BobSaysNotOneFromListComands()
+        private void NeoSaysNotOneFromListComands()
         {
 
         }

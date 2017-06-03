@@ -15,6 +15,8 @@ namespace ReadOne.Application
     [TestFixture]
     public class BooksByTag
     {
+        private ReadOne _app;
+
         [SetUp]
         public void SetUp()
         {
