@@ -21,3 +21,7 @@
 
 # Quality requirements
 Должно работать через веб.
+
+# Build Status
+[![Build status](https://ci.appveyor.com/api/projects/status/18o5kii9wraj59jk?svg=true)](https://ci.appveyor.com/project/leechdraw/read-one)
+
