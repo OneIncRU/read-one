@@ -52,6 +52,7 @@
     <Compile Include="BooksByTag.cs" />
     <Compile Include="BookInfo.cs" />
     <Compile Include="BaseBook.cs" />
+    <Compile Include="EditLibrary.cs" />
     <Compile Include="TrackingBook.cs" />
     <Compile Include="Tags.cs" />
     <Compile Include="Comands.cs" />

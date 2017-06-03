@@ -5,8 +5,8 @@ using TestStack.BDDfy;
 namespace ReadOne.Application
 {
     [Story(AsA = "As a reader",
-           IWant = "I want to know all comands to control",
-           SoThat = "So that I can overview all available comands")]
+           IWant = "I want to overview all available comands",
+           SoThat = "So that I could know how to control the Bot by comands")]
     [TestFixture]
     public class Comands
     {

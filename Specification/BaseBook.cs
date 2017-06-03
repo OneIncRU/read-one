@@ -23,6 +23,14 @@ namespace ReadOne.Application
         {
             throw new NotImplementedException();
         }
+        protected void BookIsNotStartedByAnyUser()
+        {
+            throw new NotImplementedException();
+        }
+        protected void BookIsStartedByAnyUser()
+        {
+            throw new NotImplementedException();
+        }
         protected void BookIsAlreadyStartedByYou()
         {
             throw new NotImplementedException();
