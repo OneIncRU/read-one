@@ -11,7 +11,7 @@ namespace ReadOne.Application
 {
     [Story(AsA = "As a reader",
            IWant = "I want to see available tags for sorting books",
-           SoThat = "So that I can overview all available tags")]
+           SoThat = "So that I can choose some tags to filter the library")]
     [TestFixture]
     public class Tags
     {

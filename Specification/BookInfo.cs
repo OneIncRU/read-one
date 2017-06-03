@@ -11,7 +11,7 @@ namespace ReadOne.Application
 {
     [Story(AsA = "As a reader",
            IWant = "I want to see certain book info",
-           SoThat = "So that I can overview chosen book info")]
+           SoThat = "So that I can know what parameters the book has")]
     [TestFixture]
     public class BookInfo
     {
