@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="ComandList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShowMeBooks.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj">
