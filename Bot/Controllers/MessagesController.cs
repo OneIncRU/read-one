@@ -1,8 +1,8 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
 namespace Bot
@@ -25,7 +25,11 @@ namespace Bot
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog(_app));
+                var connectorClient = new ConnectorClient(new Uri(activity.ServiceUrl));
+
+                var length = activity.Text.Length;
+                var reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
+                await connectorClient.Conversations.ReplyToActivityAsync(reply);
             }
             else
             {
