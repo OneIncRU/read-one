@@ -10,51 +10,49 @@ using TestStack.BDDfy;
 namespace ReadOne.Application
 {
     [Story(AsA = "As a reader",
-           IWant = "I want to see available tags for sorting books",
-           SoThat = "So that I can overview all available tags")]
+           IWant = "I want to see certain book info",
+           SoThat = "So that I can overview chosen book info")]
     [TestFixture]
-    public class ShowTagList
+    public class BookInfo
     {
-        private ReadOne _app;
-
         [SetUp]
         public void SetUp()
         {
             _app = new ReadOne();
         }
         [Test]
-        public void GetNotEmptyTagList()
+        public void GetAvailableBookInfo()
         {
-            this.When(x => x.BobSaysShowTagList())
-                    .And(x => x.TagListIsNotEmpty())
-                .Then(x => x.HeSeesTagList())
+            this.Given(x => x.CorrectChoiceOfBook())
+                .When(x => x.NeoSaysBookInfo())
+                .Then(x => x.HeSeesBookInfo())
                 .BDDfy();
         }
         [Test]
-        public void GetEmptyTagList()
+        public void GetNotAvailableBookInfo()
         {
-            this.When(x => x.BobSaysShowTagList())
-                    .And(x => x.TagListIsEmpty())
-                .Then(x => x.HeSeesEmptyTagList())
+            this.Given(x => x.IncorrectChoiceOfBook())
+                .When(x => x.NeoSaysBookInfo())
+                .Then(x => x.HeSeesNoBookInfo())
                 .BDDfy();
         }
-        private void BobSaysShowTagList()
+        private void CorrectChoiceOfBook()
         {
             throw new NotImplementedException();
         }
-        private void TagListIsNotEmpty()
+        private void IncorrectChoiceOfBook()
         {
             throw new NotImplementedException();
         }
-        private void HeSeesTagList()
+        private void NeoSaysBookInfo()
         {
             throw new NotImplementedException();
         }
-        private void TagListIsEmpty()
+        private void HeSeesBookInfo()
         {
             throw new NotImplementedException();
         }
-        private void HeSeesEmptyTagList()
+        private void HeSeesNoBookInfo()
         {
             throw new NotImplementedException();
         }

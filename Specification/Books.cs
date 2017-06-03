@@ -8,7 +8,7 @@ namespace ReadOne.Application
            IWant = "I want to see available books",
            SoThat = "So that I can overview all available books")]
     [TestFixture]
-    public class ShowMeBooks
+    public class Books
     {
         [SetUp]
         public void SetUp()
@@ -19,8 +19,8 @@ namespace ReadOne.Application
         [Test]
         public void ShowListOfBooks()
         {
-            this.When(x => x.BobSaysShowMeBooks())
-                    .And(x => x.ListOfBooksIsNotEmpty())
+            this.Given(x => x.ListOfBooksIsNotEmpty())
+                .When(x => x.NeoSaysBooks())
                 .Then(x => x.HeSeesListOfBooks())
                 .BDDfy();
         }
@@ -28,13 +28,12 @@ namespace ReadOne.Application
         [Test]
         public void NotShowListOfBooks()
         {
-            this.When(x => x.BobSaysShowMeBooks())
-                    .And(x => x.ListOfBooksIsEmpty())
+            this.Given(x => x.ListOfBooksIsEmpty())
+                .When(x => x.NeoSaysBooks())
                 .Then(x => x.HeSeesNoAvailableBooks())
                 .BDDfy();
         }
-
-        private void BobSaysShowMeBooks()
+        private void NeoSaysBooks()
         {
             throw new NotImplementedException();
         }
