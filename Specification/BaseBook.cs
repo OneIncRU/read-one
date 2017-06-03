@@ -15,7 +15,7 @@ namespace ReadOne.Application
         {
             throw new NotImplementedException();
         }
-        protected void BookNotExists()
+        protected void BookDoesNotExist()
         {
             throw new NotImplementedException();
         }

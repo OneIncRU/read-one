@@ -43,7 +43,7 @@ namespace ReadOne.Application
         [Test]
         public void StartReadingFailed()
         {
-            this.Given(x => x.BookNotExists())
+            this.Given(x => x.BookDoesNotExist())
                 .When(x => x.NeoSaysStart())
                 .Then(x => x.NeoSeesBookNotExists())
                 .BDDfy();
@@ -97,7 +97,7 @@ namespace ReadOne.Application
         [Test]
         public void FinishReadingFailed()
         {
-            this.Given(x => x.BookNotExists())
+            this.Given(x => x.BookDoesNotExist())
                 .When(x => x.NeoSaysFinish())
                 .Then(x => x.NeoSeesBookNotExists())
                 .BDDfy();
@@ -141,7 +141,7 @@ namespace ReadOne.Application
             [Test]
             public void ReviewBookFailed()
             {
-                this.Given(x => x.BookNotExists())
+                this.Given(x => x.BookDoesNotExist())
                     .When(x => x.NeoSaysReview())
                     .Then(x => x.NeoSeesBookNotExists())
                     .BDDfy();

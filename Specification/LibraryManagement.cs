@@ -13,7 +13,7 @@ namespace ReadOne.Application
            IWant = "I want to edit library: add and remove books",
            SoThat = "So that I can actualize the library")]
     [TestFixture]
-    public class LibraryManagement
+    public class LibraryManagement: BaseBook
     {
         private ReadOne _app;
 
@@ -30,29 +30,11 @@ namespace ReadOne.Application
                 .BDDfy();
         }
 
-        private void NeoSaysAdd()
-        {
-            throw new NotImplementedException();
-        }
-        private void NeoGoToAddBook()
-        {
-            throw new NotImplementedException();
-        }
-    }
-    public class Remove : BaseBook
-    {
-        private ReadOne _app;
-
-        [SetUp]
-        public void SetUp()
-        {
-            _app = new ReadOne();
-        }
         [Test]
         public void RemoveBook()
         {
             this.Given(x => x.BookExists())
-                    .And(x => x.BookIsNotStartedByAnyUser())
+                .And(x => x.BookIsNotStartedByAnyUser())
                 .When(x => x.NeoSaysRemove())
                 .Then(x => x.NeoRemovedBook())
                 .BDDfy();
@@ -61,20 +43,28 @@ namespace ReadOne.Application
         public void RemovingBookNotAvailable()
         {
             this.Given(x => x.BookExists())
-                    .And(x => x.BookIsStartedByAnyUser())
+                .And(x => x.BookIsStartedByAnyUser())
                 .When(x => x.NeoSaysRemove())
                 .Then(x => x.NeoSeesBookIsStartedByAnyUser())
                 .BDDfy();
         }
         [Test]
-        public void FinishReadingFailed()
+        public void RemoveFailed()
         {
-            this.Given(x => x.BookNotExists())
+            this.Given(x => x.BookDoesNotExist())
                 .When(x => x.NeoSaysRemove())
                 .Then(x => x.NeoSeesBookNotExists())
                 .BDDfy();
         }
 
+        private void NeoSaysAdd()
+        {
+            throw new NotImplementedException();
+        }
+        private void NeoGoToAddBook()
+        {
+            throw new NotImplementedException();
+        }
         private void NeoSaysRemove()
         {
             throw new NotImplementedException();

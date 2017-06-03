@@ -8,7 +8,7 @@ namespace ReadOne.Application
            IWant = "I want to see available books",
            SoThat = "So that I can choose some book for reading")]
     [TestFixture]
-    public class Books
+    public class SeeAvailableBooks
     {
         [SetUp]
         public void SetUp()
@@ -58,7 +58,7 @@ namespace ReadOne.Application
             Assert.Multiple(() =>
             {
                 Assert.That(_previews.Length, Is.EqualTo(1));
-                //Assert.That(_previews[0].Id, Is.EqualTo(_addedBookId));
+                Assert.That(_previews[0].Id, Is.EqualTo(_addedBookId));
                 Assert.That(_previews[0].Name, Is.EqualTo("name"));
             });
         }

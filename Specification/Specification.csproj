@@ -52,12 +52,12 @@
     <Compile Include="BooksByTag.cs" />
     <Compile Include="BookInfo.cs" />
     <Compile Include="BaseBook.cs" />
-    <Compile Include="EditLibrary.cs" />
+    <Compile Include="LibraryManagement.cs" />
     <Compile Include="TrackingBook.cs" />
     <Compile Include="Tags.cs" />
     <Compile Include="Comands.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Books.cs" />
+    <Compile Include="SeeAvailableBooks.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj">
