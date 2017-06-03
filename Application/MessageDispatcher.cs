@@ -40,6 +40,7 @@ namespace ReadOne.Application
                 var agg = new A();
 
                 // Load the aggregate with events.
+                agg.Id = c.Id;
                 agg.ApplyEvents(_eventStore.LoadEventsFor<A>(c.Id));
 
                 // With everything set up, we invoke the command handler, collecting the

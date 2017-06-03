@@ -52,18 +52,18 @@ namespace ReadOne
         {
             var info = _books.Single(x => x.Id == e.Id);
             info.Reviews.Add(new Review { Reader = e.Reader, Comment = e.Comment, Rating = e.Rating });
-            foreach(var tag in e.Tags)
+            foreach (var tag in e.Tags)
             {
                 if (!info.Tags.Contains(tag)) info.Tags.Add(tag);
             }
             info.Rating = info.Reviews.Sum(r => r.Rating) / info.Reviews.Count;
 
-            foreach(var tag in e.Tags)
+            foreach (var tag in e.Tags)
             {
                 if (!_tags.Contains(tag)) _tags.Add(tag);
             }
-            
-            foreach(var tag in e.Tags)
+
+            foreach (var tag in e.Tags)
             {
                 if (!_tagsMap[e.Id].Contains(tag)) _tagsMap[e.Id].Add(tag);
             }
@@ -74,7 +74,7 @@ namespace ReadOne
         private readonly Dictionary<Guid, List<string>> _tagsMap = new Dictionary<Guid, List<string>>();
         private readonly List<string> _tags = new List<string>();
 
-        #endregion
+        #endregion Builders
 
         public class BookPreview
         {
@@ -86,9 +86,9 @@ namespace ReadOne
         {
             public Guid Id { get; set; }
             public string Name { get; set; }
-            public List<Review> Reviews { get; private set; } = new List<Review>();
+            public List<Review> Reviews { get; } = new List<Review>();
             public int Rating { get; set; }
-            public List<string> Tags { get; set; }
+            public List<string> Tags { get; } = new List<string>();
         }
 
         public class Review

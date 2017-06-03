@@ -13,7 +13,7 @@ namespace ReadOne
     {
         public IEnumerable Handle(Add c)
         {
-            if (Id != default(Guid)) throw new BookAlreadyAdded();
+            if (EventsLoaded > 0) throw new BookAlreadyAdded();
 
             yield return new BookAdded
             {
