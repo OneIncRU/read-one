@@ -20,13 +20,18 @@ namespace ReadOne.Application
         public void BobIsGreeted()
         {
             this.When(x => x.BobSaysAnything())
+                    .And(x => x.BobSaysNotOneFromListComands())
                 .Then(x => x.HeSeesHi())
                 .BDDfy();
         }
+        private void BobSaysNotOneFromListComands()
+        {
 
+        }
         private void HeSeesHi()
         {
-            Assert.AreEqual("Hi", _response);
+             
+            Assert.AreEqual("ShowMeBooks, ShowTagList, ShowBooksByTag, ShowBooksByTags, GiveBookInfo#, StartRead, FinishRead, InputBookInfo, DeleteBook", _response);
         }
 
         private void BobSaysAnything()
