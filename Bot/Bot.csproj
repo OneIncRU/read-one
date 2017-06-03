@@ -120,10 +120,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CommandWrapping\CommandWrapperBase.cs" />
-    <Compile Include="CommandWrapping\ICommandManager.cs" />
-    <Compile Include="CommandWrapping\CommandManager.cs" />
-    <Compile Include="CommandWrapping\ICommandWrapper.cs" />
+    <Compile Include="Tools\CommandHelper.cs" />
+    <Compile Include="Tools\TokenizeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -140,6 +138,10 @@
     <ProjectReference Include="..\Application\Application.csproj">
       <Project>{81b3fd78-0af4-4147-8a8b-3e1c382f3214}</Project>
       <Name>Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{b255226b-219f-4b00-ac43-394082955c07}</Project>
+      <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

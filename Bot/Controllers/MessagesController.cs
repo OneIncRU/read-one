@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Bot.Tools;
+using Microsoft.Bot.Connector;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Microsoft.Bot.Connector;
 
 namespace Bot
 {
@@ -26,9 +27,52 @@ namespace Bot
             if (activity.Type == ActivityTypes.Message)
             {
                 var connectorClient = new ConnectorClient(new Uri(activity.ServiceUrl));
+                var tokens = activity.Text.ToTokens();
+                var reply = activity.CreateReply();
+                switch (tokens[0])
+                {
+                    case "add":
+                        if (tokens.Length < 2)
+                        {
+                            reply.Text = "Using: add \"Books name\"";
+                        }
+                        else
+                        {
+                            _app.Do(CommandHelper.CreateAdd(tokens[1]));
+                            reply.Text = "Book was added";
+                        }
+                        break;
 
-                var length = activity.Text.Length;
-                var reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
+                    case "books":
+                        //todo
+                        break;
+                }
+                var header = string.Empty;
+
+                /*              var heroCard = new HeroCard
+                              {
+                                  Title = header,
+                                  Buttons = new List<CardAction>
+                                  {
+                                      new CardAction {Type = "postBack", Title = "Select 1 fdshfsdjkhsdfjk", Value = "1"},
+                                      new CardAction {Type = "postBack", Title = "Select 1 fdshfsdjkhsdfjkfdshfsdjkhsdfjk", Value = "1"},
+                                      new CardAction {Type = "postBack", Title = "Select 1", Value = "1"},
+                                      new CardAction {Type = "postBack", Title = "Select 1", Value = "1"},
+                                      new CardAction {Type = "postBack", Title = "Select 1", Value = "1"},
+                                      new CardAction {Type = "postBack", Title = "Select 1", Value = "1"},
+                                      new CardAction {Type = "postBack", Title = "Select 1fdshfsdjkhsdfjkfdshfsdjkhsdfjkfdshfsdjkhsdfjk", Value = "1"},
+                                      new CardAction {Type = "postBack", Title = "Select 1", Value = "1"},
+                                      new CardAction {Type = "postBack", Title = "Select 1", Value = "1"},
+                                      new CardAction {Type = "postBack", Title = "Select 1fdshfsdjkhsdfjkfdshfsdjkhsdfjkfdshfsdjkhsdfjkfdshfsdjkhsdfjk", Value = "1"},
+                                      new CardAction {Type = "postBack", Title = "Select 1", Value = "1"},
+                                  },
+                                  Tap = new CardAction
+                                  {
+                                      Value = "44"
+                                  }
+                              };
+                              reply.Attachments.Add(heroCard.ToAttachment());
+              */
                 await connectorClient.Conversations.ReplyToActivityAsync(reply);
             }
             else
