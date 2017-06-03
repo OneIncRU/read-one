@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using System;
+﻿using NUnit.Framework;
 using TestStack.BDDfy;
 
 namespace ReadOne.Application
@@ -50,5 +45,6 @@ namespace ReadOne.Application
         private void HeSeesNoAvailableBooks()
         {
         }
+        private ReadOne _app;
     }
 }

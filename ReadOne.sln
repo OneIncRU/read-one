@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage", "Storage\Storage.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot", "Bot\Bot.csproj", "{E8405BEC-1B5F-4B9B-8BAF-3A1FC4A142EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queries", "Queries\Queries.csproj", "{5002A24A-037A-425F-887C-2C039C45F350}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{E8405BEC-1B5F-4B9B-8BAF-3A1FC4A142EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8405BEC-1B5F-4B9B-8BAF-3A1FC4A142EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8405BEC-1B5F-4B9B-8BAF-3A1FC4A142EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5002A24A-037A-425F-887C-2C039C45F350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5002A24A-037A-425F-887C-2C039C45F350}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5002A24A-037A-425F-887C-2C039C45F350}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5002A24A-037A-425F-887C-2C039C45F350}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
