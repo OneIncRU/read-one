@@ -5,25 +5,77 @@ namespace ReadOne
 {
     public class Book : Aggregate,
         IHandleCommand<Add>,
+        IHandleCommand<Start>,
+        IHandleCommand<Finish>,
+        IHandleCommand<Review>,
+        IHandleCommand<Remove>,
         IApplyEvent<BookAdded>
     {
-        public string Name { get; private set; }
-
         public IEnumerable Handle(Add c)
         {
-            if (EventsLoaded > 0) throw new BookAlreadyAdded();
+            if (Id != default(Guid)) throw new BookAlreadyAdded();
 
             yield return new BookAdded
             {
+                Moment = DateTime.Now,
                 Id = c.Id,
                 Name = c.Name
+            };
+        }
+
+        public IEnumerable Handle(Start c)
+        {
+            if (Id == default(Guid)) throw new BookDoesNotExist();
+
+            yield return new BookStartedBySomebody
+            {
+                Moment = DateTime.Now,
+                Id = Id,
+                Reader = c.Reader
+            };
+        }
+
+        public IEnumerable Handle(Finish c)
+        {
+            if (Id == default(Guid)) throw new BookDoesNotExist();
+
+            yield return new BookRead
+            {
+                Moment = DateTime.Now,
+                Id = Id,
+                Reader = c.Reader
+            };
+        }
+
+        public IEnumerable Handle(Review c)
+        {
+            if (Id == default(Guid)) throw new BookDoesNotExist();
+
+            yield return new BookReviewed
+            {
+                Moment = DateTime.Now,
+                Id = Id,
+                Reader = c.Reader,
+                Comment = c.Comment,
+                Rating = c.Rating,
+                Tags = c.Tags
+            };
+        }
+
+        public IEnumerable Handle(Remove c)
+        {
+            if (Id == default(Guid)) throw new BookDoesNotExist();
+
+            yield return new BookRemoved
+            {
+                Moment = DateTime.Now,
+                Id = Id
             };
         }
 
         public void Apply(BookAdded e)
         {
             Id = e.Id;
-            Name = e.Name;
         }
     }
 
@@ -89,4 +141,5 @@ namespace ReadOne
     }
 
     public class BookAlreadyAdded : Exception { }
+    public class BookDoesNotExist : Exception { }
 }

@@ -13,7 +13,7 @@ namespace ReadOne.Application
            IWant = "I want to edit library: add and remove books",
            SoThat = "So that I can actualize the library")]
     [TestFixture]
-    public class Add
+    public class LibraryManagement
     {
         private ReadOne _app;
 
