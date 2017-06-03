@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 using TestStack.BDDfy;
 
 namespace ReadOne.Application
@@ -14,6 +15,7 @@ namespace ReadOne.Application
         {
             _app = new ReadOne();
         }
+
         [Test]
         public void ShowListOfBooks()
         {
@@ -22,6 +24,7 @@ namespace ReadOne.Application
                 .Then(x => x.HeSeesListOfBooks())
                 .BDDfy();
         }
+
         [Test]
         public void NotShowListOfBooks()
         {
@@ -30,26 +33,32 @@ namespace ReadOne.Application
                 .Then(x => x.HeSeesNoAvailableBooks())
                 .BDDfy();
         }
+
         private void BobSaysShowMeBooks()
         {
             throw new NotImplementedException();
         }
+
         private void ListOfBooksIsNotEmpty()
         {
             throw new NotImplementedException();
         }
+
         private void ListOfBooksIsEmpty()
         {
             throw new NotImplementedException();
         }
+
         private void HeSeesListOfBooks()
         {
             throw new NotImplementedException();
         }
+
         private void HeSeesNoAvailableBooks()
         {
             throw new NotImplementedException();
         }
+
         private ReadOne _app;
     }
 }
