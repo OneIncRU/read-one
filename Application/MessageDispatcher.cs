@@ -40,8 +40,7 @@ namespace ReadOne.Application
                 var agg = new A();
 
                 // Load the aggregate with events.
-                agg.Id = ((dynamic)c).Id;
-                agg.ApplyEvents(_eventStore.LoadEventsFor<A>(agg.Id));
+                agg.ApplyEvents(_eventStore.LoadEventsFor<A>(c.Id));
 
                 // With everything set up, we invoke the command handler, collecting the
                 // events that it produces.
@@ -153,7 +152,7 @@ namespace ReadOne.Application
             _eventStore = eventStore;
         }
 
-        private Dictionary<Type, Action<object>> _handlers = new Dictionary<Type, Action<object>>();
+        private Dictionary<Type, Action<ICommand>> _handlers = new Dictionary<Type, Action<ICommand>>();
         private Dictionary<Type, List<Action<object>>> _subscribers = new Dictionary<Type, List<Action<object>>>();
         private IEventStore _eventStore;
 

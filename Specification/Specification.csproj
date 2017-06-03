@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BooksByTag.cs" />
-    <Compile Include="BookInfo.cs" />
+    <Compile Include="BookInformation.cs" />
     <Compile Include="BaseBook.cs" />
     <Compile Include="LibraryManagement.cs" />
     <Compile Include="TrackingBook.cs" />

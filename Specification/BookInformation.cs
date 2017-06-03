@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
-using System;
 using TestStack.BDDfy;
 
 namespace ReadOne.Application
@@ -13,7 +8,7 @@ namespace ReadOne.Application
            IWant = "I want to see certain book info",
            SoThat = "So that I can know what parameters the book has")]
     [TestFixture]
-    public class BookInfo
+    public class BookInformation
     {
         private ReadOne _app;
 
@@ -41,23 +36,42 @@ namespace ReadOne.Application
         
         private void CorrectChoiceOfBook()
         {
-            throw new NotImplementedException();
+            _bookId = Guid.NewGuid();
+            _bookName = "Martin Fowler 'Refactoring: Improving the Design of Existing Code'";
+            _app.Do(new Add
+            {
+                Id = _bookId,
+                Name = _bookName
+            });
         }
+
         private void IncorrectChoiceOfBook()
         {
-            throw new NotImplementedException();
+            _bookId = Guid.NewGuid();
         }
+
         private void NeoSaysBookInfo()
         {
-            throw new NotImplementedException();
+            _bookInfo = _app.BookInfo(_bookId);
         }
+
         private void HeSeesBookInfo()
         {
-            throw new NotImplementedException();
+            Assert.That(_bookInfo, Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(_bookInfo.Id, Is.EqualTo(_bookId));
+                Assert.That(_bookInfo.Name, Is.EqualTo(_bookName));
+            });
         }
+
         private void HeSeesNoBookInfo()
         {
-            throw new NotImplementedException();
+            Assert.That(_bookInfo, Is.Null);
         }
+
+        private Guid _bookId;
+        private Library.Book _bookInfo;
+        private string _bookName;
     }
 }

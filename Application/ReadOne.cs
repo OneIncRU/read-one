@@ -47,6 +47,11 @@ namespace ReadOne.Application
             return _library.Books(tags);
         }
 
+        public Library.Book BookInfo(Guid id)
+        {
+            return _library.BookInfo(id);
+        }
+
         private readonly IEventStore _store;
         private readonly MessageDispatcher _dispatcher;
         private readonly Library _library;
